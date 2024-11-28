@@ -2,7 +2,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.naive_bayes import GaussianNB
+from sklearn.neighbors import KNeighborsClassifier 
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, classification_report, confusion_matrix
 
 
@@ -25,11 +25,13 @@ y = data['target']
 #Spliting the data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=30)
 
-
-clf = GaussianNB()
+#use elbow method to find the optimal K value
+clf = KNeighborsClassifier(n_neighbors=5)
 clf.fit(X_train,y_train)
 
+
 pred = clf.predict(X_test)
+
 
 # Calculate accuracy
 accuracy = accuracy_score(y_test, pred)
@@ -49,3 +51,5 @@ print("Recall:", recall)
 print("F1 Score:", f1)
 print("\nClassification Report:\n", class_report)
 print("Confusion Matrix:\n", conf_matrix)
+
+

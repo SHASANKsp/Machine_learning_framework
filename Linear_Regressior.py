@@ -2,7 +2,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.svm import SVR
+from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score, root_mean_squared_error
 import matplotlib.pyplot as plt
 
@@ -28,7 +28,7 @@ y = data['target']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=30)
 
 
-clf = SVR(kernel="linear")
+clf = LinearRegression()
 clf.fit(X_train,y_train)
 
 pred = clf.predict(X_test)

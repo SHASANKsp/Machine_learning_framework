@@ -2,7 +2,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.naive_bayes import GaussianNB
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, classification_report, confusion_matrix
 
 
@@ -12,8 +12,6 @@ data = pd.read_csv() #read the file
 X = data.drop('target', axis=1)
 y = data['target']
 
-#clean data for missing data and other noice
-#
 # scaling the features - refer to the scalling.py script
 # 
 #  
@@ -26,10 +24,11 @@ y = data['target']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=30)
 
 
-clf = GaussianNB()
+clf = LogisticRegression()
 clf.fit(X_train,y_train)
 
 pred = clf.predict(X_test)
+
 
 # Calculate accuracy
 accuracy = accuracy_score(y_test, pred)
